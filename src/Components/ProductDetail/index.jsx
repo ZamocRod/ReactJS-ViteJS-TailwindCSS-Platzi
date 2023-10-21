@@ -4,15 +4,20 @@ import { XCircleIcon } from "@heroicons/react/24/solid";
 import { ShoppingCartContext } from "../../Context";
 function ProductDetail() {
   const context = React.useContext(ShoppingCartContext);
+  console.log("Producto:", context.productToShow);
   return (
     <aside
       className={`${
         context.isProductDetailOpen ? "flex" : "hidden"
-      } product-detail flex-col fixed right-0 border border-black rounded-lg bg-white`}
+      } product-detail flex-col fixed right-0 border border-black rounded-lg bg-white/70 backdrop-blur-lg`}
     >
       <div className="flex justify-between items-center p-4">
         <h2 className="font-medium text-xl">Detail</h2>
-        <button onClick={()=>{context.closeProductDetail()}}>
+        <button
+          onClick={() => {
+            context.closeProductDetail();
+          }} className="cursor-pointer"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -29,6 +34,18 @@ function ProductDetail() {
           </svg>
         </button>
       </div>
+      <figure className="px-6">
+        <img
+          className="w-full h-full rounded-lg"
+          src={context.productToShow.images[0]}
+          alt={context.productToShow.title}
+        />
+      </figure>
+      <p className="flex flex-col p-6">
+        <span className="font-medium text-3xl mb-4">${context.productToShow.price}</span>
+        <span className="font-medium text-xl mb-2">{context.productToShow.title}</span>
+        <span>{context.productToShow.description}</span>
+      </p>
     </aside>
   );
 }
