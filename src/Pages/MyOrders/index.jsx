@@ -12,6 +12,7 @@ function MyOrders() {
       {context.order.map((order, index) => (
         <Link to={`/my-orders/${index}`}>
           <OrdersCard
+            key={context.order.length}
             totalPrice={order.totalPrice}
             totalProducts={order.total}
           />
