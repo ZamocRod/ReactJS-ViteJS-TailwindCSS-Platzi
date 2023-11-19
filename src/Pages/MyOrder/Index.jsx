@@ -10,8 +10,8 @@ function MyOrder() {
 
   //Se va a tomar el path de la orden y luego se buscará el ultimo "/" para encontrar el numero al que se refiere la orden, luego se borrara el resto del string para tomar el valor final
 
-  let index = currentPath.substring(currentPath.lastIndexOf('/')+1);
-  if(index === 'last'){
+  let index = currentPath.substring(currentPath.lastIndexOf("/") + 1);
+  if (index === "last") {
     index = context.order?.length - 1;
   }
 
@@ -36,7 +36,7 @@ function MyOrder() {
             </svg>
           </button>
         </Link>
-        <h1 className="text-lg font-bold">My Orders</h1>
+        <h1 className="text-lg font-bold">My Order</h1>
       </div>
       <div className="overflow-y-auto flex flex-col w-80">
         {context.order?.[index]?.products.map((item) => (

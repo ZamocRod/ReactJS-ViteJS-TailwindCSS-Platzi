@@ -8,6 +8,7 @@ function MyOrders() {
   const context = React.useContext(ShoppingCartContext);
   return (
     <Layout>
+      <h2 className="text-xl font-bold mb-4 mt-2">My Orders</h2>
       {context.order.map((order, index) => (
         <Link to={`/my-orders/${index}`}>
           <OrdersCard
