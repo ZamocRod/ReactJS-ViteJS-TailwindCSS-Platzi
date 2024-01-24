@@ -16,6 +16,9 @@ function NavBar() {
         <li>
           <NavLink
             to="/"
+            onClick={() => {
+              context.setSearchByCategory("");
+            }}
             className={({ isActive }) => (isActive ? activeStyle : undefined)}
           >
             All
@@ -23,7 +26,10 @@ function NavBar() {
         </li>
         <li>
           <NavLink
-            to="/clother"
+            to="/clothes"
+            onClick={() => {
+              context.setSearchByCategory("clothes");
+            }}
             className={({ isActive }) => (isActive ? activeStyle : undefined)}
           >
             Clothes
@@ -32,6 +38,10 @@ function NavBar() {
         <li>
           <NavLink
             to="/electronics"
+            onClick={() => {
+              context.setSearchByCategory("electronics");
+              console.log(context.setSearchByCategory);
+            }}
             className={({ isActive }) => (isActive ? activeStyle : undefined)}
           >
             Electronics
@@ -40,6 +50,9 @@ function NavBar() {
         <li>
           <NavLink
             to="/furnitures"
+            onClick={() => {
+              context.setSearchByCategory("furniture");
+            }}
             className={({ isActive }) => (isActive ? activeStyle : undefined)}
           >
             Furnitures
@@ -48,6 +61,9 @@ function NavBar() {
         <li>
           <NavLink
             to="/toys"
+            onClick={() => {
+              context.setSearchByCategory("toys");
+            }}
             className={({ isActive }) => (isActive ? activeStyle : undefined)}
           >
             Toys
@@ -56,6 +72,9 @@ function NavBar() {
         <li>
           <NavLink
             to="/others"
+            onClick={() => {
+              context.setSearchByCategory("others");
+            }}
             className={({ isActive }) => (isActive ? activeStyle : undefined)}
           >
             Others
@@ -63,7 +82,7 @@ function NavBar() {
         </li>
       </ul>
       <ul className="flex gap-3">
-        <li className="font-sm font-light text-black/70">hola@Digit3D.com</li>
+        <li className="font-sm font-light text-black/70">Hola@Digit3D.com</li>
         <li>
           <NavLink
             to="/my-orders"
@@ -90,7 +109,9 @@ function NavBar() {
         </li>
         <li>
           <NavLink
-            to="/shopping-car"
+            onClick={() => {
+              context.openCheckoutSideMenu();
+            }}
             className={({ isActive }) => (isActive ? activeStyle : undefined)}
           >
             <svg
@@ -107,7 +128,7 @@ function NavBar() {
                 d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"
               />
             </svg>
-            {context.count}
+            {context.cartProducts.length}
           </NavLink>
         </li>
       </ul>
