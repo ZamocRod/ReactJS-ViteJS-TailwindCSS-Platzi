@@ -2,8 +2,38 @@ import { createContext, useState, useEffect } from "react";
 
 export const ShoppingCartContext = createContext();
 
+//Inicializar los datos de local Storage o en su defecto tomar los datos y pasarlos por la función de parse
+
+export const initilizeLocalStorage = () => {
+  const accountInLocalStorage = localStorage.getItem("account");
+  const signOutLocalStorage = localStorage.getItem("sign-out");
+  let parsedAccount;
+  let parsedSignOut;
+  if (!accountInLocalStorage) {
+    localStorage.setItem("account", JSON.stringify({}));
+    parsedAccount = {};
+  } else {
+    parsedAccount = JSON.parse(accountInLocalStorage);
+  }
+  if (!signOutLocalStorage) {
+    localStorage.setItem("sign-out", JSON.stringify(false));
+    parsedSignOut = false;
+  } else {
+    parsedSignOut = JSON.parse(signOutLocalStorage);
+  }
+};
+
+//Proveedor del contexto de la aplicación web
+
 export const ShoppingCartProvider = ({ children }) => {
+  //shopping cart counter
   const [count, setCount] = useState(0);
+
+  // my account
+  const [account, setAccount] = useState();
+
+  //Sign out
+  const [signOut, setSignOut] = useState();
 
   //Product Detail open/close
   const [isProductDetailOpen, setIsProductDetailOpen] = useState(false);
@@ -96,6 +126,10 @@ export const ShoppingCartProvider = ({ children }) => {
         setFilteredItems,
         searchByCategory,
         setSearchByCategory,
+        account,
+        setAccount,
+        signOut,
+        setSignOut,
       }}
     >
       {children}
